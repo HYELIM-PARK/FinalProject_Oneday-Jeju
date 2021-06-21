@@ -1,5 +1,7 @@
 package jeju.service.face;
 
+import java.util.HashMap;
+
 import jeju.dto.JejuUser;
 
 public interface LoginService {
@@ -76,5 +78,23 @@ public interface LoginService {
 	 * @return 1: 인증완료 0: 인증미완료
 	 */
 	public boolean mailAuth(JejuUser login);
+	
+	
+	/**
+	 * 카카오 접근 토큰 받아오기
+	 * 
+	 * @param authoriz_code - 코드
+	 * @return - 토큰 반환
+	 */
+//	public String kakaoGetAccessToken(String authoriz_code);
+	
+	
+	/**
+	 * 카카오 유저 정보 가져오기
+	 * @param accessToken - 접근 토큰
+	 * @return - 유저 정보
+	 */
+//	public HashMap<String, Object> getUserInfo(String accessToken);
+	
 	
 }

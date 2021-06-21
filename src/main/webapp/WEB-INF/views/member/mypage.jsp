@@ -7,7 +7,7 @@
 
 <c:import url="/WEB-INF/views/layout/header.jsp" />
 
-<!-- findPage css -->
+<!-- mypage css -->
 <link rel="stylesheet" href="/resources/css/mypage.css" type="text/css">
 
 <!-- 나의일정, 북마크 css -->
@@ -175,6 +175,8 @@ function mysubmit(sub) {
 }
 
 </script>
+
+
 <!-- 나의일정/북마크 버튼 자바스크립트 -->
 <script type="text/javascript">
 $(document).ready(function (){
@@ -539,6 +541,9 @@ $(document).ready(function (){
 						<td><input type="text" id="newAddress" name="newAddress" value="${userData.userAddress}" /></td>
 						<td><label for="newAddress">상세주소</label></td>
 						<td><input type="text" id="newAddressDetail" name="newAddressDetail" value="${userData.userAddressDetail}" /></td>
+					</tr>
+					<tr>
+						<td><a href="#" style="color:red; font-size:20px;">회원탈퇴</a><td>
 					</tr>
 				</table>
 			</div>

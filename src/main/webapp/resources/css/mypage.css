@@ -138,6 +138,10 @@ article {
     background: 0;	
 }
 
+.modal-table {
+	margin:0;
+}
+
 .table tr {
 	height: 50px;
 }

@@ -155,6 +155,9 @@ function getCookie(cookieName) {
 	<div class="button-container">
 		<button type="button" id="joinBtn" ><span>회원가입 하기</span></button><br>
 		<button id="loginBtn" ><span>로그인 <i class="fa fa-sign-in"></i></span></button>
+<!-- 		<a href="/member/kakaologinForm"> -->
+<!-- 			<img src="/resources/image/kakao_login_medium_narrow.png" width="250px"> -->
+<!-- 		</a> -->
 	</div>
 	
 	<div class="footer">

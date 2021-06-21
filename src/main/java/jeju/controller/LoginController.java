@@ -1,5 +1,8 @@
 package jeju.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,6 +33,7 @@ public class LoginController {
 	//로그인 폼
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public void login( Model model, @CookieValue(value = "cId", required = false) Cookie idCookie) {
+		
 		logger.info("/member/login [GET]");
 		
 //		JejuUser loginInfo = new JejuUser();
@@ -44,7 +48,12 @@ public class LoginController {
 	
 	//로그인 처리
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView loginProc(JejuUser login, HttpSession session, HttpServletResponse response) {
+	public ModelAndView loginProc(
+			JejuUser login
+			, HttpSession session
+			, HttpServletResponse response
+			
+			) {
 		
 		logger.info("/member/login [POST]");
 		
@@ -166,6 +175,29 @@ public class LoginController {
 		return "member/resultpw";
 	}
 	
+	
+//	@RequestMapping(value="/kakaologinForm")
+//	public String kakaoLogin(HttpSession session) {
+//		String url = "https://kauth.kakao.com/oauth/authorize?client_id=bb1bf9279e4ad4e32eca330dc95e24fd&redirect_uri=http://localhost:8088/member/kakaologin&response_type=code";
+//		
+//		return "redirect:"+url;
+//	}
+	
+//	@RequestMapping(value="/kakaologin")
+//	public String kakaoLogin(String code, HttpSession session) {
+//		logger.info("/kakaologin code: {}", code);
+//		boolean isJoin = false;
+//		
+//		String accessToken = loginService.kakaoGetAccessToken(code);
+//		logger.info("accessToken: {}", accessToken);
+//		HashMap<String, Object> userInfo = loginService.getUserInfo(accessToken);
+//		for (String e : userInfo.keySet()) {
+//			logger.info("{}: {}", e, userInfo.get(e));
+//		}
+//		
+//		
+//		return "redirect:/";
+//	}
 
 	
 

@@ -23,6 +23,8 @@
 <!--메인 css -->
 <link rel="stylesheet" href="/resources/css/layout.css" type="text/css">
 
+<!-- 카카오 api -->
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 
 
