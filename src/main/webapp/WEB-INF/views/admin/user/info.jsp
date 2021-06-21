@@ -31,7 +31,8 @@ $(document).ready(function() {
 
 <div class="container">
 	<div class="pageHeader">
-		<span class="pull-left">회원관리 > <span id="page">회원정보</span></span><br>
+		<span class="pull-left"><span id="title">회원관리</span> ＞ 회원정보</span><br>
+		<hr>
 	</div><!-- End pageHeader -->
 	
 	<div class="pageContent">
@@ -79,8 +80,8 @@ $(document).ready(function() {
 			<button type="button" class="btn" id="btnModify">수정</button>
 			<button type="button" class="btn" id="btnDelete">삭제</button>
 		</div><!-- End btn -->
-	</div><!-- End pageContent -->
 
+	</div><!-- End pageContent -->
 </div><!-- End container -->
 
 <c:import url="/WEB-INF/views/layout/adminFooter.jsp" />

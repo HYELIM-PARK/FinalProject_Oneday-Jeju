@@ -96,9 +96,13 @@
 /* 답변글 수정 폼  */
 .updateAnswer{
 	 width : 80%;
+	 padding : 20px;
 	 display : none; 
 	 border : 1px solid #ccc;
 	 border-radius : 15px;
+}
+.updateAnswer h4{
+	display : inline-block;
 }
 </style>
 <script type="text/javascript">

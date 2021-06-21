@@ -181,11 +181,11 @@
 	<!-- 파일명 추가하기 -->
 	<insert id="insertFiles" parameterType="jeju.dto.qna.FileTB">
 		<choose>
-		<when test="#{ansNo} == null">
+		<when test="ansNo == 0">
 	 	INSERT INTO qst_file(qst_file_no, qst_no, qst_origin, qst_stored) VALUES
 	 	(qst_file_no_seq.nextval, #{qstNo}, #{origin}, #{stored})
 	 	</when>
-	 	<when test="#{ansNo} != null and #{qstNo} != null">
+	 	<when test="ansNo != 0 and #{qstNo} != null">
 	 	INSERT INTO ans_file(ans_file_no, ans_no, ans_origin, ans_stored) VALUES	 	
 	 	(ans_file_no_seq.nextval, #{ansNo}, #{origin}, #{stored})
 	 	</when>
@@ -217,17 +217,16 @@
 		UPDATE qa_question SET title = #{title}, qst_content = #{qstContent}
 		WHERE qst_no = #{qstNo}
 	</update>
-	<!-- 첨부파일 삭제하기 -->
-	<delete id="deleteFiles" parameterType="int">
-		<choose>
-		<when test="#{ansNo} != null">
-		DELETE FROM ans_file WHERE ans_no = #{ansNo}		
-		</when>
-		<otherwise>
+	<!-- 질문글 첨부파일 삭제하기 -->
+	<delete id="deleteQstFiles" parameterType="int">
 		DELETE FROM qst_file WHERE qst_no = #{qstNo}
-		</otherwise>
-		</choose>
 	</delete>
+	<!-- 답변글 첨부파일 삭제하기 -->
+	<delete id="deleteAnsFiles" parameterType="int">
+		DELETE FROM ans_file WHERE ans_no = #{ansNo}
+	</delete>
+	
+	
 	
 	<!-- 태그번호 삭제하기 -->
 	<delete id="deleteTags" parameterType="int">

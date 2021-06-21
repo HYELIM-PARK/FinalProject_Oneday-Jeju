@@ -102,8 +102,9 @@ public class AdminUserController {
 	}
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public void create() {
+	public String create() {
 //		logger.info("/admin/user/create [GET]");
+		return "/admin/user/create";
 	}
 	
 	@ResponseBody

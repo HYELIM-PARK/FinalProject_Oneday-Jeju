@@ -152,7 +152,7 @@ public class QuestionController {
 		//첨부파일 생성
 		List<FileTB> filetable = qnaService.createFile(file);
 		
-		
+		logger.info("파일리스트 : {}", filetable);
 		// 질문글 업데이트
 		qnaService.updateQuestion(question, filetable, tagNo);
 		

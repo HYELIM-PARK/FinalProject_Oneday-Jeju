@@ -22,19 +22,19 @@ $(document).ready(function() {
 	
 	//검색버튼 클릭
 	$("#btnSearch").click(function() {
-		location.href="/admin/user/list?condition="+$("#condition").val()+"&search="+$("#search").val();
+		location.href="./list?condition="+$("#condition").val()+"&search="+$("#search").val();
 	});
 	
-	//관리자계정생성 버튼 클릭
-	$("#btnCreate").click(function() {
-		location.href="/admin/user/create";
-	});
-})
+	//관리자계정생성 모달창 열기
+	$(".modal-content").load("./create");
+
+});
 </script>
 
 <div class="container">
 	<div class="pageHeader">
-		<span class="pull-left"><span id="page">회원관리</span> > 전체회원</span><br>
+		<span class="pull-left"><span id="title">회원관리</span> ＞ 전체회원</span><br>
+		<hr>
 	</div><!-- End pageHeader -->
 	
 	<div class="pageContent">
@@ -99,15 +99,22 @@ $(document).ready(function() {
 		<%-- 최고관리자(userGrade == 0)계정으로 로그인했을 때만 버튼 표시 --%>
 		<c:if test="${grade eq '0'}">
 			<div class="pull-right">
-				<button type="button" class="btn" id="btnCreate">관리자계정 생성</button>
+				<button type="button" class="btn" id="btnCreate" data-toggle="modal" data-target="#create">관리자계정 생성</button>
 			</div>
 		</c:if>			
 	
 		<%-- 페이징 JSP --%>
-		<jsp:include page="/WEB-INF/views/admin/user/paging.jsp" />
-
+		<jsp:include page="./paging.jsp" />
+		
 	</div><!-- End pageContent -->
-
 </div><!-- End container -->
 
 <c:import url="/WEB-INF/views/layout/adminFooter.jsp" />
+
+<!-- #create Modal -->
+<div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="createLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		</div><!-- End modal-content -->
+	</div><!-- End modal-dialog -->
+</div><!-- End myModal -->

@@ -30,7 +30,6 @@
 		</div><!-- End btn -->
 		
 	</div><!-- End pageContent -->
-	
 </div><!-- End container -->
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

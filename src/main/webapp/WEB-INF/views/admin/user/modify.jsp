@@ -8,21 +8,12 @@
 
 <link rel="stylesheet" type="text/css" href="/resources/css/adminUser.css" />
 
-<script type="text/javascript">
-/* $(document).ready(function() {
-	
-	//취소 버튼 클릭
-	$("#btnCancle").click(function() {
-		location.href=;
-	})
-})
- */
-</script>
-
+<script type="text/javascript"></script>
 
 <div class="container">
 	<div class="pageHeader">
-		<span class="pull-left">회원정보 > <span id="page">정보수정</span></span><br>
+		<span class="pull-left"><span id="title">회원정보</span> ＞ 정보수정</span><br>
+		<hr>
 	</div><!-- End pageHeader -->
 	
 	<div class="pageContent">
@@ -34,7 +25,7 @@
 			<table id="tbInfoModify" class="table">
 				<tr>
 					<th>아이디</th>
-					<td><input type="text" class="form-control" id="userId" name="userId" value="${user.userId}"> </td>
+					<td><input type="text" class="form-control" id="userId" name="userId" value="${user.userId}" readonly> </td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
@@ -46,7 +37,7 @@
 				</tr>
 				<tr>
 					<th>닉네임</th>
-					<td><input type="text" class="form-control" id="userNick" name="userNick" value="${user.userNick}"></td>
+					<td><input type="text" class="form-control" id="userNick" name="userNick" value="${user.userNick}" readonly></td>
 				</tr>
 				<tr>
 					<th>생년월일</th>
@@ -70,12 +61,12 @@
 			</table>
 		
 			<div id="btnGroupInfoModify" align="center">
+				<button type="button" class="btn" id="btnCancle" onclick="location.href='info?userNo='+${user.userNo}">취소</button>
 				<button type="submit" class="btn" id="btnUpdate">등록</button>
-				<button type="button" class="btn" id="btnCancle" onclick="location.href='info?userNo='+${user.userNo}">취소</button>	
 			</div><!-- End btn -->
 		</form><!-- End modifyForm -->
+		
 	</div><!-- End pageContent -->
-	
 </div><!-- End container -->
 
 <c:import url="/WEB-INF/views/layout/adminFooter.jsp" />

@@ -95,6 +95,7 @@ public class QnAServiceImpl implements QnAService{
 		FileTB fileno = new FileTB();
 		fileno.setQstNo(qstNo);
 		List<HashMap<String, Object>> files = qnaDao.selectFiles(fileno);
+		logger.info("업데이트할 질문글 파일 : {}", files);
 		return files;
 	}
 	// 답변글 갯수 조회하기
@@ -219,9 +220,12 @@ public class QnAServiceImpl implements QnAService{
 		//질문글에 등록된 파일 정보 가져오기
 		List<HashMap<String, Object>> files = qnaDao.selectFiles(fileno);
 		String storedName="";
-		if(fileno.getQstNo()>0) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("qstNo", fileno.getQstNo());
+		map.put("ansNo", fileno.getAnsNo());
+		if(fileno.getQstNo()>0 && fileno.getAnsNo()==0) {
 			storedName += "QST_STORED";
-		}else if(fileno.getAnsNo()>0) {
+		}else if(fileno.getQstNo()>0 && fileno.getAnsNo()>0) {
 			storedName += "ANS_STORED";
 		}
 		//파일이 저장된 경로 가져오기
@@ -254,8 +258,7 @@ public class QnAServiceImpl implements QnAService{
 		//변경할 파일이 있는 경우
 		if(filetable != null) {
 			//기존의 첨부파일 목록 삭제
-			qnaDao.deleteFiles(question.getQstNo());
-			
+			qnaDao.deleteQstFiles(question.getQstNo());
 			//첨부파일 DB저장
 			for(FileTB file : filetable) {
 				file.setQstNo(question.getQstNo());
@@ -311,7 +314,7 @@ public class QnAServiceImpl implements QnAService{
 		//변경할 파일이 있는 경우 파일처리
 		if(filetable != null) {
 			//기존 첨부파일 삭제
-			qnaDao.deleteFiles(answer.getAnsNo());
+			qnaDao.deleteAnsFiles(answer.getAnsNo());
 			//변경된 파일 저장
 			for(FileTB files : filetable) {
 				files.setAnsNo(answer.getAnsNo());

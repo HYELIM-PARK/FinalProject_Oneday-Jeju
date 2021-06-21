@@ -2,14 +2,14 @@
 
 /* 전체 */
 article { border: none; }
-.container { width: 1000px; height: 700px; position: relative; padding: 0px; margin: 0 auto; border: 1px solid #D8D5DB; border-radius: 5px; box-shadow: inset 0 0 1em #E0E0E0; }
+.container { width: 970px; min-height: 700px; padding: 0 0 0 0; }
 
 /* Page Header */
-.pageHeader { width: 90%; padding-top: 15px; font-size: 20px; }
-#page { font-weight: bold; }
+.pageHeader { width: 100%; font-size: 20px; }
+#title { font-weight: bold; }
 
 /* Page Content */
-.pageContent { width: 90%; padding-top: 50px; }
+.pageContent { width: 100%; }
 
 /* list */
 #inputSearch { padding-bottom: 1.8%; }
@@ -18,33 +18,41 @@ article { border: none; }
 #total { padding-left: 10px; }
 #tbList th { text-align: center; }
 #tbList td { text-align: center; }
-#btnSearch { color: #FFFFFF; background-color: #8BD7D2; font-size: 14px; }
-#btnCreate { color: #FFFFFF; background-color: #00BD9D; font-size: 15px; }
-.paging { width: 1000px; padding-top: 5%; text-align: center; }
+#tbList a:hover { color: #FFFFFF; background-color: #8BD7D2; }
+#btnSearch { color: #FFFFFF; font-size: 14px; background-color: #8BD7D2; }
+#btnCreate { color: #FFFFFF; font-size: 15px; background-color: #00BD9D; }
+.paging { width: 100%; padding-top: 4%; text-align: center; }
 
 /* info */
-#tbInfo { width: 60%; padding-top: 40%; }
-#tbInfo th { width: 20%; background-color: #f7f7f7; }
-#tbInfo td input { width: 80%; background-color: #FFFFFF; }
+#tbInfo { width: 50%; padding-top: 40%; }
+#tbInfo th { background-color: #f7f7f7; }
+#tbInfo td input { background-color: #FFFFFF; }
 #btnGroupInfo { padding-top: 20px; padding-bottom: 5px; }
-#btnList { border-radius: 100px; color: #00BD9D; font-size: 14px; background-color: #FFFFFF; width: 90px; border: 1.5px solid #8BD7D2; margin-right: 2%; }
-#btnModify { border-radius: 100px; color: #FFFFFF; font-size: 14px; background-color: #00BD9D; width: 90px; margin-right: 2%; }
-#btnDelete { border-radius: 100px; color: #F84A71; font-size: 14px; background-color: #FFFFFF; border: 1.5px solid #F84A71; width: 90px; }
+#btnList { width: 90px; margin-right: 2%; border: 1.5px solid #8BD7D2; border-radius: 100px; color: #00BD9D; font-size: 14px; background-color: #FFFFFF; }
+#btnModify { width: 90px; margin-right: 2%; border-radius: 100px; color: #FFFFFF; font-size: 14px; background-color: #00BD9D; }
+#btnDelete { width: 90px; border: 1.5px solid #F84A71; border-radius: 100px; color: #F84A71; font-size: 14px; background-color: #FFFFFF; }
 
 /* modify */
-#tbInfoModify { width: 60%; padding-top: 40%; }
-#tbInfoModify th { width: 20%; background-color: #f7f7f7; }
-#tbInfoModify td input { width: 80%; background-color: #FFFFFF; }
-#btnGroupInfoModify { padding-top: 15px; padding-bottom: 5px; }
-#btnUpdate { border-radius: 100px; color: #FFFFFF; font-size: 14px; background-color: #00BD9D; width: 100px; margin-right: 3%; }
-#btnCancle { border-radius: 200px; color: #00BD9D; font-size: 14px; background-color: #FFFFFF; width: 100px; border: 1.5px solid #00BD9D; }
+#tbInfoModify { width: 50%; padding-top: 40%; }
+#tbInfoModify th { background-color: #f7f7f7; }
+#btnGroupInfoModify { padding-top: 20px; padding-bottom: 5px; }
+#btnCancle { width: 100px; margin-right: 3%; border: 1.5px solid #00BD9D; border-radius: 200px; color: #00BD9D; font-size: 14px; background-color: #FFFFFF; }
+#btnUpdate { width: 100px; border-radius: 100px; color: #FFFFFF; font-size: 14px; background-color: #00BD9D; }
 
-/* create */
-#tbCreate { width: 50%; margin-top: 4%; }
-#tbCreate th { width: 30%; background-color: #f7f7f7; }
-#tbCreate td input { width: 100%; background-color: #FFFFFF; }
+/* create Modal */
+.modal { text-align: center; }
+@media screen and (min-width: 768px) {  
+	.modal:before { display: inline-block; vertical-align: middle; content: " "; height: 100%; }
+}
+.modal-dialog { display: inline-block; text-align: left; vertical-align: middle; }
+.modal-content { width: 500px; height: 550px; margin: 0 auto; vertical-align: middle; }
+.title { text-align: center; padding: 10px 5px 5px 10px; }
+#tbCreate { width: 90%; }
+#tbCreate th { background-color: #f7f7f7; }
+#tbCreate td input { background-color: #FFFFFF; }
 .msg { padding-left: 5px; color: #F84A71; font-size: 12px; }
-#msgChkPw2 { padding-left: 5px; color: blue; font-size: 12px; }
-#btnGroupCreate { padding-top: 10px; padding-bottom: 5px; }
-#btnInsert { border-radius: 2px; color: #FFFFFF; font-size: 14px; background-color: #00BD9D; width: 120px; margin-right: 5%; }
-#btnCancleCreate { border-radius: 2px; color: #00BD9D; font-size: 14px; background-color: #FFFFFF; width: 120px; border: 1.5px solid #00BD9D; }
+#msgChkPw2 { padding-left: 5px; color: #0000ff; font-size: 12px; }
+.modal-footer { margin-top: 4.5%; text-align: center; }
+#btnCancleCreate { width: 45%; color: rgb(89, 89, 89); font-size: 18px; background-color: #FFFFFF; }
+#btnInsert { width: 45%; color: #00BD9D; font-size: 18px; background-color: #FFFFFF; }
+

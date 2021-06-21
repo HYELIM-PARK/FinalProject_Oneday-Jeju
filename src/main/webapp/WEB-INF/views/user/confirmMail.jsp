@@ -12,24 +12,4 @@ alert("회원가입이 최종적으로 완료되었습니다. 이제 로그인�
 document.location.href="/member/login";
 </script>
 
-<div class="container">
-<!-- 	<div class="pageHeader">
-		<span></span>
-	</div>End pageHeader
-	
-	<div class="pageContent">
-		<div class="msgBox">
-			<div class="msg">
-				<h1></h1>
-				<br><br>
-				<p>
-				</p>
-				<br><br><br><br>
-				<button type="button" class="btn" id="btnMain" onclick="location.href='/'">메인으로</button>
-			</div>End msg
-		</div>End msgBox
-	</div>End pageContent -->
-	
-</div><!-- End container -->
-
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

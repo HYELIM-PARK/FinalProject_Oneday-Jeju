@@ -20,19 +20,18 @@ $(document).ready(function() {
 	
 		} else { //체크박스 하나라도 체크 안 된 경우
 			alert("이용약관 및 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요.");
-			$("#btnNext").prop("disabled", true);
 		}
 	})
-})
+});
 </script>
 
 
-<div class="container" id="joinAgreecontainer">
+<div class="container" id="agreecontainer">
 	<div class="pageHeader">
 		<h2>약관동의</h2>
 	</div><!-- End pageHeader -->
 	
-	<div class="pageContent">
+	<div class="pageContent" id="agreePageContent">
 		<form id="termsForm" name="agreement" role="form" onsubmit="return send(this)">
 			<div class="terms">
 				<label>이용약관 <span id="required">(필수)</span></label>
@@ -93,8 +92,8 @@ $(document).ready(function() {
 				<button type="button" class="btn" id="btnNext">다음</button>
 			</div><!-- End btn -->
 		</form><!-- End termsForm -->
+		
 	</div><!-- End pageContent -->
-
 </div><!-- End container -->
 
 <c:import url="/WEB-INF/views/layout/footer.jsp" />

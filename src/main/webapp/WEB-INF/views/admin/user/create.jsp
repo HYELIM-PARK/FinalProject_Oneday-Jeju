@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:import url="/WEB-INF/views/layout/adminHeader.jsp" />
+<%-- <c:import url="/WEB-INF/views/layout/adminHeader.jsp" /> --%>
 
 <link rel="stylesheet" type="text/css" href="/resources/css/adminUser.css" />
 
@@ -14,92 +14,61 @@ $(document).ready(function() {
 	$("#userId").focus(); //아이디 최초 포커스
 	
 	$("#msgId").hide();
+	$("#msgPw").hide();
 	$("#msgChkPw1").hide();
 	$("#msgChkPw2").hide();
 	$("#msgNick").hide();
 	
+	
 	//아이디 중복확인
-	$("#userId").change(function() {
+	$("#userId").blur(function() {
 		var id = $("#userId").val();
 		
-		 if(id == "") { //아이디 입력값 없을 때
-			$("#msgId").show();
-			$("#msgId").html("아이디를 입력하세요.");
-			$("#btnInsert").prop("disabled", true);
-			return false;
-		 }
-		
 		$.ajax({
-			async : false
-			, type: "get"
+			type: "get"
 			, url: "/admin/user/create/checkId"
 			, data: { id }
 			, dataType: "json"
 			, success: function(data) {
 //				console.log("성공")
 //				console.log(data)
-							
+				
 				if(data >= 1) { //아이디 중복값이 있을 때
 					$("#msgId").show();
 					$("#msgId").html("이미 사용중인 아이디입니다.");
 					$("#btnInsert").prop("disabled", true);
 				
-				} else { //아이디 중복값이 없을 때
-					if( data == 0 ) {
+				} else if(data == 0){ //아이디 중복값이 없을 때
+					if (id == "") { //아이디 입력값이 없을 때
+						$("#msgId").show();
+						$("#msgId").html("아이디를 입력하세요.");
+						$("#btnInsert").prop("disabled", true);
+					
+					} else { //아이디 입력값이 있을 때
 						$("#msgId").show();
 						$("#msgId").html("사용 가능한 아이디입니다.");
 						$("#btnInsert").prop("disabled", false);
-								
-					} else {
-						$("#msgId").hide();
-					}
+					}			
+				
+				} else {
+					$("#msgId").hide();
+					$("#btnInsert").prop("disabled", true);
 				}
+			
 			} //End success
 			, error: function() { //AJAX 실패 시 콜백함수
 				console.log("실패")
 			} //End error
 		}) //End ajax
 	}); //End change fn
-
-
-	//비밀번호 일치여부 확인
-	$("#checkPw").change(function() {
-		var upw = $("#userPw").val();
-		var cpw = $("#checkPw").val();
-	
-		if(upw != "" && cpw != "") { //둘 다 입력값이 있을 때
-			if(upw == cpw) { //입력값이 일치할 때
-				$("#msgChkPw2").show();
-				$("#msgChkPw1").hide();
-				$("#msgChkPw2").html("입력하신 비밀번호와 일치합니다.");
-				$("#btnInsert").prop("disabled", false);
-			} else {		//입력값이 일치하지 않을 때
-				$("#msgChkPw1").show();
-				$("#msgChkPw2").hide();
-				$("#msgChkPw1").html("입력하신 비밀번호와 일치하지 않습니다.");
-				$("#btnInsert").prop("disabled", true);
-			}
-		} else {
-			$("#msgChkPw1").hide();
-			$("#msgChkPw2").hide();
-		}
-	});
 	
 	
 	//닉네임 중복확인
-	$("#userNick").change(function() {
+	$("#userNick").blur(function() {
 		var nick = $("#userNick").val();
 		
-		 if(nick == "") { //닉네임 입력값 없을 때
-			$("#msgNick").show();
-			$("#msgNick").html("닉네임을 입력하세요.");
-			$("#btnInsert").prop("disabled", true);
-			return false;
-		 }
-		
 		$.ajax({
-			async : false
-			, type: "get"
+			type: "get"
 			, url: "/admin/user/create/checkNick"
 			, data: { nick }
 			, dataType: "json"
@@ -112,16 +81,23 @@ $(document).ready(function() {
 					$("#msgNick").html("이미 사용중인 닉네임입니다.");
 					$("#btnInsert").prop("disabled", true);
 				
-				} else { //아이디 중복값이 없을 때
-					if( data == 0 ) {
+				} else if(data == 0) { //닉네임 중복값이 없을 때
+					if(nick == "") { //닉네임 입력값이 없을 때
+						$("#msgNick").show();
+						$("#msgNick").html("닉네임을 입력하세요.");
+						$("#btnInsert").prop("disabled", true);
+						
+					} else { //닉네임 입력값이 있을 때
 						$("#msgNick").show();
 						$("#msgNick").html("사용 가능한 닉네임입니다.");
-						$("#btnInsert").prop("disabled", false);
-								
-					} else {
-						$("#msgNick").hide();
+						$("#btnInsert").prop("disabled", false);						
 					}
+
+				} else {
+					$("#msgNick").hide();
+					$("#btnInsert").prop("disabled", true);
 				}
+				
 			} //End success
 			, error: function() { //AJAX 실패 시 콜백함수
 				console.log("실패")
@@ -129,16 +105,70 @@ $(document).ready(function() {
 		}) //End ajax
 	}); //End change fn
 	
+	
+	//비밀번호 입력값 확인
+	$("#userPw").blur(function() {
+		var upw = $("#userPw").val();
+		
+		if(upw != "") { //비밀번호 입력값이 있을 때
+			$("#msgPw").hide();
+			$("#btnInsert").prop("disabled", false);
+		
+		} else { //비밀번호 입력값이 없을 때
+			$("#msgPw").show();
+			$("#msgPw").html("비밀번호를 입력하세요.");
+			$("#btnInsert").prop("disabled", true);
+		}
+	});
+	
+	//비밀번호 일치여부 확인
+	$("#checkPw").blur(function() {
+		var upw = $("#userPw").val();
+		var cpw = $("#checkPw").val();
+		
+		if(upw != "" && cpw == "" ) { //비밀번호 확인 입력값이 없을 때
+			$("#msgChkPw1").show();
+			$("#msgChkPw2").hide();
+			$("#msgChkPw1").html("비밀번호를 한 번 더 입력하세요.");
+			$("#btnInsert").prop("disabled", true);
+		
+		} else if(upw != "" && cpw != "") { //둘 다 입력값이 있을 때
+			if(upw == cpw) { //입력값이 일치할 때
+				$("#msgChkPw2").show();
+				$("#msgChkPw1").hide();
+				$("#msgChkPw2").html("비밀번호가 일치합니다.");
+				$("#btnInsert").prop("disabled", false);
+			
+			} else { //입력값이 일치하지 않을 때
+				$("#msgChkPw1").show();
+				$("#msgChkPw2").hide();
+				$("#msgChkPw1").html("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+				$("#btnInsert").prop("disabled", true);
+			}
+		
+		} else {  //비밀번호 입력값이 없을 때
+			$("#msgChkPw1").hide();
+			$("#msgChkPw2").hide();
+			$("#btnInsert").prop("disabled", true);
+		}
+	});
+	
+	
+	//모달창 닫으면 목록페이지 새로고침(모달창 입력값 리셋하기 위한 처리)
+	$("#create").on('hidden.bs.modal', function (e) {
+		location.href="./list";
+	});
+	
 });
 </script>
 
 
-<div class="container">
-	<div class="pageHeader">
-		<span class="pull-left">회원관리 > <span id="page">관리자 계정 생성</span></span><br>
-	</div><!-- End pageHeader -->
+<div class="modal-container">
+	<div class="title">
+		<h3>관리자 계정 생성</h3>
+	</div><!-- End title -->
 	
-	<div class="pageContent">
+	<div class="modal-body">
 		<%-- 정보 입력 폼 --%>
 		<form id="createForm" role="form" action="/admin/user/create" method="post">
 							
@@ -153,7 +183,9 @@ $(document).ready(function() {
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td><input type="password" class="form-control" id="userPw" name="userPw" maxlength="15" placeholder="비밀번호" required></td>
+					<td><input type="password" class="form-control" id="userPw" name="userPw" maxlength="15" placeholder="비밀번호" required>
+						<span id="msgPw" class="msg"></span>
+					</td>
 				</tr>
 				<tr>
 					<th>비밀번호 확인</th>
@@ -179,14 +211,12 @@ $(document).ready(function() {
 					<td><input type="email" class="form-control" id="userEmail" maxlength="30" name="userEmail" placeholder="이메일" required></td>
 				</tr>
 			</table>
-		
-			<div id="btnGroupCreate" align="center">
-				<button type="submit" class="btn" id="btnInsert">등록</button>
-				<button type="button" class="btn" id="btnCancleCreate" onclick="location.href='/admin/user/list'">취소</button>
-			</div><!-- End btn -->
-		</form><!-- End createForm -->
-	</div><!-- End pageContent -->
-	
-</div><!-- End container -->
 
-<c:import url="/WEB-INF/views/layout/adminFooter.jsp" />
+			<div class="modal-footer">
+				<button type="button" class="btn" id="btnCancleCreate" data-dismiss="modal">취 소</button>
+				<button type="submit" class="btn" id="btnInsert">등 록</button>
+			</div><!-- End modal-footer -->
+			
+		</form><!-- End createForm -->
+	</div><!-- End modal-body -->
+</div><!-- End modal-container -->

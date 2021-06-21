@@ -126,7 +126,13 @@ public interface QnADao {
 	 * 
 	 * @param qstNo 수정할 게시글 번호
 	 */
-	public void deleteFiles(int qstNo);
+	public void deleteQstFiles(int qstNo);
+	/**
+	 * 기존에 등록된 파일 정보 삭제
+	 * 
+	 * @param qstNo 수정할 게시글 번호
+	 */
+	public void deleteAnsFiles(int ansNo);
 	/**
 	 * 태그정보 변경
 	 * 기존의 태그 정보와 게시글과의 연결 끊기
