@@ -9,7 +9,7 @@
 <br>
 
 ### 🔗 Link
-https://www.notion.so/28ef43cbb9ec414f84259c0440227c3e
+https://iron-corn-648.notion.site/5508267f63aa417baa37475863004d26
 <br><br>
 
 ### 🛠️ 개발 환경
